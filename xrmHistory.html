@@ -1,41 +1,31 @@
 ﻿<!DOCTYPE html>
-
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <style>/*
-        @font-face {
-            font-family: 'ecoico';
-            src:url('../fonts/timelineicons/ecoico.eot');
-            src:url('../fonts/timelineicons/ecoico.eot?#iefix') format('embedded-opentype'),
-                url('../fonts/timelineicons/ecoico.woff') format('woff'),
-                url('../fonts/timelineicons/ecoico.ttf') format('truetype'),
-                url('../fonts/timelineicons/ecoico.svg#ecoico') format('svg');
-            font-weight: normal;
-            font-style: normal;
-        }*/
-
-        /*NOT THE WORLD'S GREATEST CSS AUTHOR- PLEASE ASSIST*/
+    <style>
         #activity-header {
             width: 100%;
             height: 20px;
-            position:absolute;
-            padding: 0 0 100%-20px 0
+            position:fixed;
+            padding: 0 0 10px 0;
+            display:block;
         }
         #activity-header > span {
             background-color: midnightblue;
             color: white;
             font-family: 'Segoe UI Light', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             font-weight: lighter;
+            font-size:large;
             width: 100%;
-            height: 20px;
-            position:absolute;
+            height: 32px;
+            position:fixed;
             padding: 0 0 100%-20px 0
         }
         #activity-container {
             width: 100%;
             height: 100%;
             padding: 20px 0 0 0;
+            display:block;
         }
         .xrmhistory_timeline {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -46,139 +36,122 @@
             color: #000000;
             height: 100%;
         }
-        .xrmhistory_timeline:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            width: 10px;
-            background: #ffffff;
-            left: 20%;
-            margin-left: -10px;
-        }
-        .xrmhistory_timeline > li {      
-            position: relative;
-            color: #000000;
-        }
-        .xrmhistory_timeline > li .xrmhistory_time {
+        .xrmhistory_time {
+            color:black;
             display: block;
-            width: 25%;
-            padding-right: 101px;
-            position: absolute;
-            color: #000000;
+            float:left;
+            position:relative;
+            width: 75%;
+            padding-top:0;
+            padding-bottom:0;
         }
-        .xrmhistory_timeline > li .xrmhistory_time span {
+        .xrmhistory_time_sched {
+            color: firebrick;
+            font-weight: bold;
             display: block;
-            text-align: right;
+            float:left;
+            position:relative;
+            width: 75%;
+            padding-top:0;
+            padding-bottom:0;
         }
-        .xrmhistory_timeline > li .xrmhistory_time span:first-child {
-            font-size: 0.7em;
-            color: #000000;
+        .xrmhistory_time > span {
+            display: block;
+            font-weight:bold;
+            position:relative;
+            padding-top:0;
+            padding-bottom:0;
         }
-        .xrmhistory_timeline > li:nth-child(odd) .xrmhistory_time span:first-child {
-            font-size: 0.7em;
-            color: #000000;
+        .xrmhistory_icon {
+            display:block;
+            position:relative;            
+            height:32px;
+            width:40px;
+            float:left;
+            padding-top:0;
+            cursor:pointer;
         }
-        .xrmhistory_timeline > li .xrmhistory_time span:last-child {
-            font-size: 0.7em;
-            color: #000000;
+        .xrmhistory_label {
+            position:relative;
+            display:block;
+            padding-top:0;
         }
-        .xrmhistory_timeline > li:nth-child(odd) .xrmhistory_time span:last-child {
-            font-size: 0.7em;
-            color: #000000;
+        .xrmhistory_subject {
+            display:block;
+            height:40px;
+            font-size:medium;
+            width:100%;
+            float:left;
+            padding-top:0;
+            color:blue;
+            background-color:white;
+            cursor:pointer;
         }
-        .xrmhistory_timeline > li:nth-child(odd) .xrmhistory_label {
-            background: #ffffff;
+        .xrmhistory_description {
+            width:100%;
+            overflow-y: auto;
+            position:relative;
+            float:left;
+            padding-bottom:20px;
         }
-        .xrmhistory_timeline > li .xrmhistory_label h2 { 
-            font-size:0.9em;
-            margin-top: 0;
-            padding: 0 0 10px 0;
-            border-bottom: 1px solid #cfcfcf;
-        }
-        .xrmhistory_timeline > li .xrmhistory_label:after {
-            right: 100%;
-            border: solid transparent;
-            content: " ";
-            height: 0;
-            width: 0;
-            position: absolute;
-            pointer-events: none;
-            border-width: 10px;
-            top: 6px;
-        }
-        .xrmhistory_timeline > li:nth-child(odd) .xrmhistory_label:after {
-
-        }
-        @media screen and (max-width: 65.375em) {
-            .xrmhistory_timeline > li .xrmhistory_time span:last-child {
-                font-size: 0.9em;
-            }
-        }
-        @media screen and (max-width: 47.2em) {
-            .xrmhistory_timeline:before {
-                display: none;
-            }
-
-            .xrmhistory_timeline > li .xrmhistory_time {
-                width: 100%;
-                position: relative;
-                padding: 0 0 20px 0;
-            }
-
-            .xrmhistory_timeline > li .xrmhistory_time span {
-                text-align: left;
-            }
-
-            .xrmhistory_timeline > li .xrmhistory_label {
-                margin: 0 0 30px 0;
-                padding: 1em;
-                font-weight: 400;
-                font-size: 95%;
-            }
-        }
-
     </style>
-    <title>Activity Feed</title>
-    <script type="text/javascript" src="../scripts/simpleXrmFull.min.js"></script>
+    <title>xrmHistory</title>
 </head>
 <body>
-    <div id="activity-header"><span>Custom Activity Feed by Joe™</span></div>
+    <div id="activity-header"><span>xrmHistory</span></div>
     <div id="activity-container"></div>
     <script type="text/javascript">
+        $ = window.parent.$;
         Xrm = window.parent.Xrm || {};
-        toggleDescription = function (x) {
+        simpleXrm = window.parent.simpleXrm || {};
+        simpleXrmSoap = window.parent.simpleXrmSoap || {};
+        simpleXrmFetch = window.parent.simpleXrmFetch || {};
+        simpleXrmRest = window.parent.simpleXrmRest || {};
+        var toggleDescription = function (x) {
             var y = document.getElementById(x);
-            var isVisible = y.style.visibility;
-            if (isVisible === "hidden") {
-                y.style.visibility = "visible";
-                y.style.height = "150px !important";
+            var displayMode = y.style.display;
+            if (displayMode === "block") {
+                y.style.display = "none";
             } else {
-                y.style.visibility = "hidden";
-                y.style.height = "0 !important";
+                y.style.display = "block";
             }
         };
-        (function () {
+        var openActivity = function (o) {
+            simpleXrm.openNewRecord({
+                entityType: o.entitytype,
+                id: o.id,
+                params: {},
+                extraqs: ["id=" + o.id]
+            });
+        };
+        function loadFeed () {
             var currentRecordId = simpleXrm.getCurrentId();
             var currentRecordName = simpleXrm.getCurrentPrimaryName();
             var currentEntityName = simpleXrm.getCurrentEntityName();
-            var shipToAccountId = simpleXrm.getLookupID("new_shiptoaccountid");
-            var shipToAccountName = simpleXrm.getLookupVal("new_shiptoaccountid");
-            var billToAccountId = simpleXrm.getLookupID("new_billtoaccountid");
-            var billToAccountName = simpleXrm.getLookupVal("new_billtoaccountid");
-            var vendorAccountId = simpleXrm.getLookupID("new_vendoraccountid");
-            var vendorAccountName = simpleXrm.getLookupVal("new_vendoraccountid");
-            var vendorContactId = simpleXrm.getLookupID("new_vendorcontactid");
-            var vendorContactName = simpleXrm.getLookupVal("new_vendorcontactid");
+            var lookupList = [];
+            var attributes = simpleXrm.allAttributes();
+            attributes.forEach(function (a, i) {
+                var b = a.getName();
+                var type = a.getAttributeType();
+                if (type === "lookup") {
+                    var entity = simpleXrm.getLookupEntityName(b);
+                    if (entity === "account" || entity === "contact" || "opportunity" || "lead") {
+                        lookupList.push(b);
+                    }
+                }
+            })
             var fetch = {
                 distinct: true,
                 entity: "activitypointer",
                 attributes: [
+                    { name: "activityid" },
                     { name: "activitytypecode" },
                     { name: "subject" },
                     { name: "description" },
                     { name: "actualstart" },
                     { name: "actualend" },
+                    { name: "scheduledstart" },
+                    { name: "scheduledend" },
                     { name: "actualdurationminutes" }
                 ],
                 order: [
@@ -197,27 +170,16 @@
                     }
                 }]
             };
-            if (shipToAccountId) {
-                fetch.linkEntity[0].filter.conditions.push(
-                            { attribute: "partyid", operator: "eq", uiname: shipToAccountName, uitype: "account", value: shipToAccountId }
+            for (var i = 0; i < lookupList.length; i++) {
+                var lookupId = simpleXrm.getLookupID(lookupList[i]);
+                if (lookupId) {
+                    var lookupEntity = simpleXrm.getLookupEntityName(lookupList[i]);
+                    var lookupName = simpleXrm.getLookupVal(lookupList[i])
+                    fetch.linkEntity[0].filter.conditions.push(
+                            { attribute: "partyid", operator: "eq", uiname: lookupName, uitype: lookupEntity, value: lookupId }
                 );
+                }
             }
-            if (billToAccountId) {
-                fetch.linkEntity[0].filter.conditions.push(
-                    { attribute: "partyid", operator: "eq", uiname: billToAccountName, uitype: "account", value: billToAccountId }
-                );
-            };
-            if (vendorAccountId) {
-                fetch.linkEntity[0].filter.conditions.push(
-                    { attribute: "partyid", operator: "eq", uiname: vendorAccountName, uitype: "account", value: vendorAccountId }
-                );
-            };
-            if (vendorContactId) {
-                fetch.linkEntity[0].filter.conditions.push(
-                    { attribute: "partyid", operator: "eq", uiname: vendorContactName, uitype: "contact", value: vendorContactId }
-                );
-            };
-
             //repeat the pattern above for any number of lead, contact, & account lookups on the form
             //insert your own fetchXML link-entity nodes using the pattern above
             //do cool things
@@ -230,7 +192,8 @@
                         var results = xmlDoc.getElementsByTagName("a:Results");
                         var feed = document.getElementById("activity-container");
                         var activities = xmlDoc.getElementsByTagName("a:Entity");
-                        var markup = '<ul class="xrmhistory_timeline">';
+                        var ids = [];
+                        var markup = '<div class="xrmhistory_timeline">';
                         if (activities) {
                             for (var i = 0; i < activities.length; i++) {
                                 var currentActivity = activities[i];
@@ -241,41 +204,64 @@
                                     var attValue = attributes[j].childNodes[1].childNodes[0].nodeValue;
                                     attsObj[attName] = attValue;
                                 };
+                                var activityType = attsObj.activitytypecode;
+                                var imgPath = "";
+                                switch (activityType) {
+                                    case "phonecall":
+                                        imgPath = '<img src="../icons/phone32.png" alt="Phone Call" style="width:32px;height:32px"></img>';
+                                        break;
+                                    case "appointment":
+                                        imgPath = '<img src="../icons/appointment32.png" alt="Appointment" style="width:32px;height:32px"></img>';
+                                        break;
+                                    case "email":
+                                        imgPath = '<img src="../icons/email32.png" alt="E-Mail" style="width:32px;height:32px"></img>';
+                                        break;
+                                    case "task":
+                                        imgPath = '<img src="../icons/task32.png" alt="Task" style="width:32px;height:32px"></img>';
+                                        break;
+                                    case "letter":
+                                        imgPath = '<img src="../icons/letter32.png" alt="Task" style="width:32px;height:32px"></img>';
+                                        break;
+                                    case "fax":
+                                        imgPath = '<img src="../icons/letter32.png" alt="Task" style="width:32px;height:32px"></img>';
+                                        break;
+                                    default:
+                                        break;
+                                }
+                                markup += '<div class="xrmhistory_icon" onclick="openActivity(\{entitytype:\'' + activityType + '\',id:\'' + attsObj.activityid + '\'})">'
+                                + imgPath + '</div>'
                                 if (attsObj.actualend) {
                                     var time = new Date(attsObj.actualend);
-                                    markup += '<li>'
-                                        + '<time class="xrmhistory_time" datetime="' + time + '">'
-                                            + '<span>' + time.toLocaleDateString() + '</span>'
-                                            + '<span>' + time.toLocaleTimeString() + '</span>'
-                                        + '</time>';
+                                    markup += '<time class="xrmhistory_time" datetime="' + time + '">'
+                                                + '<span>' + time.toLocaleDateString() + '</span>'
+                                                + '<span>' + time.toLocaleTimeString() + '</span>'
+                                            + '</time>'
+                                } else if (attsObj.actualstart) {
+                                    var time = new Date(attsObj.actualstart);
+                                    markup += '<time class="xrmhistory_time" datetime="' + time + '">'
+                                                + '<span>' + time.toLocaleDateString() + '</span>'
+                                                + '<span>' + time.toLocaleTimeString() + '</span>'
+                                            + '</time>'
+                                } else if (attsObj.scheduledstart) {
+                                    var time = new Date(attsObj.scheduledstart);
+                                    markup += '<time class="xrmhistory_time_sched" datetime="' + time + '">'
+                                                + '<span>' + time.toLocaleDateString() + '</span>'
+                                                + '<span>' + time.toLocaleTimeString() + ' (scheduled)</span>'
+                                            + '</time>'
                                 }
-                                //+ '<div class="xrmhistory_icon xrmhistory_icon-phone"></div>'
-                                markup += '<div class="xrmhistory_label">'
-                                    + '<h2 id=subject"' + i + '" style="height:40px;width:100%;top-padding:0;background-color:white;cursor:pointer;"'
-                                    + ' onclick="toggleDescription(\'description' + i + '\')">'
-                                    + attsObj.subject + '</h2>'
-                                    + '<span id="description' + i + '" style="height:150px;overflow-y:scroll;">' + attsObj.description + '</span>'
-                                + '</div>'
-                            + '</li>';
-
-                                /*
-                                For each entity in entities
-                                create a div
-                                add the actual start & end time in a div placed upper left
-                                Add the Subject accross the top of the div
-                                in the body of the div, place the Description
-                                add the dynamic record URL in the on Click event fof the subject
-                            
-                                */
+                                markup += '<div class="xrmhistory_label" >'
+                                    + '<h2 id="subject' + i + '" class="xrmhistory_subject" ' + 'onclick="toggleDescription(\'description' + i + '\')" ondblclick='
+                                    + '"openActivity(\{entitytype:\'' + activityType + '\',id:\'' + attsObj.activityid + '\'})">' + attsObj.subject + '</h2></div>'
+                                    + '<div id="description' + i + '" class="xrmhistory_description">' + attsObj.description + '</div>'
                             }
                         }
-                        markup += "</ul>";
+                        markup += "</div>";
                         feed.innerHTML += markup;
                     }
                 }
             })
-        }());
-
+        };
+        $(loadFeed())
     </script>
 </body>
 </html>
