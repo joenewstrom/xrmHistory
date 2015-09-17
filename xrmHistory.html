@@ -100,13 +100,10 @@
 <body>
     <div id="activity-header"><span>xrmHistory</span></div>
     <div id="activity-container"></div>
+    <script src="../ClientGlobalContext.js.aspx" type="text/javascript"></script>
+    <script src="../scripts/simpleXrm.js" type="text/javascript"></script>
     <script type="text/javascript">
-        $ = window.parent.$;
         Xrm = window.parent.Xrm || {};
-        simpleXrm = window.parent.simpleXrm || {};
-        simpleXrmSoap = window.parent.simpleXrmSoap || {};
-        simpleXrmFetch = window.parent.simpleXrmFetch || {};
-        simpleXrmRest = window.parent.simpleXrmRest || {};
         var toggleDescription = function (x) {
             var y = document.getElementById(x);
             var displayMode = y.style.display;
@@ -124,7 +121,7 @@
                 extraqs: ["id=" + o.id]
             });
         };
-        function loadFeed () {
+        var loadFeed = function () {
             var currentRecordId = simpleXrm.getCurrentId();
             var currentRecordName = simpleXrm.getCurrentPrimaryName();
             var currentEntityName = simpleXrm.getCurrentEntityName();
@@ -184,7 +181,7 @@
             //insert your own fetchXML link-entity nodes using the pattern above
             //do cool things
             var fetchXml = simpleXrmFetch.fetch(fetch);
-            var activityFeed = simpleXrmSoap.retrieveMultiple({
+            var activityFeed = simpleXrmSoap.fetch({
                 fetch: fetchXml,
                 callback: function () {
                     if (this.readyState === 4 && this.status === 200) {
@@ -261,7 +258,7 @@
                 }
             })
         };
-        $(loadFeed())
+        loadFeed();
     </script>
 </body>
 </html>
